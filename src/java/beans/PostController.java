@@ -183,4 +183,22 @@ public class PostController {
         currentPost = getPostByTitle(currentPost.getTitle());
         return "viewPost";
     }
+    
+      public String deletePost(User user) {
+        try (Connection conn = Utils.getConnection()) {
+            // If there's a current post, update rather than insert
+            if (currentPost.getId() >= 0) {
+                String sql = "delete from posts WHERE id = ?";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, currentPost.getTitle());
+                pstmt.setString(2, currentPost.getContents());
+                pstmt.setInt(3, currentPost.getId());
+                pstmt.executeUpdate();
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        getPostsFromDB();
+        return "viewPost";
+    }
 }
