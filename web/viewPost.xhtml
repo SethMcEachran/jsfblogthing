@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmnls.jcp.org/jsf/html">
+    <h:head>
+        <title>#{posts.currentPost.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+
+        <h1>#{postController.currentPost.title}</h1>
+        <p> #{postController.currentPost.contents}</p>
+        <p>by: #{users.getUsernameById(postController.currentPost.user_id)}Posted at #{postController.currentPost.createtime.toLocaleString()}</p>
+        <h:form>
+            <c:if test="#{login.loggedin}">
+                <h:commandButton value="Edit" action="#{posts.editPost()}" />
+            </c:if>
+            <c:if test="#{!login.loggedin}">
+                <h:commandButton value="Login" action="login" />
+            </c:if>
+            <h:commandButton value="Return" action="index" />
+        </h:form>
+    </h:body>
+</h:html>
