@@ -54,6 +54,7 @@ public class PostController {
                 posts.add(p);
             }
         } catch (SQLException ex) {
+              
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
             // This Fails Silently -- Sets Post List as Empty
             posts = new ArrayList<>();

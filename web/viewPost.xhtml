@@ -6,9 +6,11 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <h:html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmnls.jcp.org/jsf/html">
+        xmlns:h="http://xmnls.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+   
     <h:head>
-        <title>#{posts.currentPost.title}</title>
+        <title>#{postController.currentPost.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
@@ -18,7 +20,7 @@ and open the template in the editor.
         <p>by: #{users.getUsernameById(postController.currentPost.user_id)}Posted at #{postController.currentPost.createtime.toLocaleString()}</p>
         <h:form>
             <c:if test="#{login.loggedin}">
-                <h:commandButton value="Edit" action="#{posts.editPost()}" />
+                <h:commandButton value="Edit" action="#{postController.editPost()}" />
             </c:if>
             <c:if test="#{!login.loggedin}">
                 <h:commandButton value="Login" action="login" />

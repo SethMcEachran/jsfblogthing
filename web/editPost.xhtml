@@ -4,19 +4,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>#{posts.currentPost.title}</title>
+        <title>#{postController.currentPost.title}</title>
+        
     </h:head>
     <h:body>
         <h:form>
             <c:if test="#{login.loggedin}">
-                <p>Title: <h:inputText value="#{posts.currentPost.title}" /></p>
-                <p><h:inputTextarea value="#{posts.currentPost.contents}" /></p>
-                <h:commandButton value="Save" action="#{posts.savePost(login.currentUser)}" /> 
-                 <h:commandButton value="Delete" action="#{posts.deletePost(login.currentUser)}" /> 
+                <p>Title: <h:inputText value="#{postController.currentPost.title}" /></p>
+                <p><h:inputTextarea value="#{postController.currentPost.contents}" /></p>
+                <h:commandButton value="Save" action="#{postController.savePost(login.currentUser)}" /> 
+                 <h:commandButton value="Delete" action="#{postController.deletePost(login.currentUser)}" /> 
                 
             </c:if>
             <c:if test="#{!login.loggedin}"><h1>Must be Logged In to Add or Edit</h1></c:if>
-            <h:commandButton value="Cancel" action="#{posts.cancelPost}" />
+            <h:commandButton value="Cancel" action="#{postController.cancelPost}" />
         </h:form>
     </h:body>
 </html>
